@@ -1,0 +1,19 @@
+<div class="add-comment">
+    <header>
+      <h3 class="h6">Leave a reply</h3>
+    </header>
+    <form action="{% url 'add_comment' post.pk %}" method="post" class="commenting-form">
+      {% csrf_token %}
+      <div class="row">
+        {% for field in form %}
+        <div class="form-group col-md-12">
+          {{ field }}
+        </div>
+        {% endfor %}
+      
+        <div class="form-group col-md-12">
+          <button type="submit" class="btn btn-secondary">Submit Comment</button>
+        </div>
+      </div>
+    </form>
+  </div>

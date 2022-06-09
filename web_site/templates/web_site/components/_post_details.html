@@ -1,0 +1,34 @@
+{% load static %}
+<div class="post-thumbnail"><img src="{{ post.photo_url }}" alt="..." class="img-fluid"></div>
+<div class="post-details">
+    <div class="post-meta d-flex justify-content-between">
+        <div class="category"><a href="#">{{ post.category }}</a></div>
+    </div>
+    <h1>{{ post.title }}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
+    <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#"
+            class="author d-flex align-items-center flex-wrap">
+            <div class="avatar"><img src="{{ profile_image }}" alt=" ..." class="img-fluid"></div>
+            <div class="title"><span>{{  post.create_at }}</span></div>
+        </a>
+        <div class="d-flex align-items-center flex-wrap">
+            <div class="date"><i class="icon-clock"></i> {{ post.create_at|timesince }} ago</div>
+            <div class="views"><i class="icon-eye"></i> {{ views_count }} </div>
+            <div class="date">
+                <a name="{{ post.pk }}" style="color: {% if liked  %}red{% else %}#999{% endif %}; cursor: pointer;" class="like"> 
+                <i class="fa fa-thumbs-up" style="font-size: 16px;" aria-hidden="true"></i> 
+                <span id="like_count_{{post.pk}}">{{ total_like }}</span>
+                </a>
+            </div>
+            <div class="comments meta-last"><i class="icon-comment"></i>{{ comments_count }}</div>
+        </div>
+    </div>
+    <div class="post-body">
+       {{ item.post.content }}
+    </div>
+    {% include 'web_site/components/_post_tags.html' %}
+    {% include 'web_site/components/_post_nav.html' %}
+    {% include 'web_site/components/_post_comments.html' %}
+    {% if request.user.is_authenticated %}
+    {% include 'web_site/components/_post_add_comment.html' %}
+    {% endif %}
+</div>

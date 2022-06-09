@@ -1,0 +1,21 @@
+{% load static %}
+{% load website_tags %}
+<div class="latest-posts">
+    {% get_latest_post as latest_post %}
+    {% for post in latest_post %}
+    <div class="post d-flex align-items-center">
+        <a href="#">
+            <div class="post d-flex align-items-center">
+                <div class="image">
+                    <img src="{{ post.photo_url }}"
+                         alt="..."
+                         class="img-fluid">
+                </div>
+                <div class="title">
+                    <strong>{{ post.title }}</strong><span class="date last-meta">{{ post.create_at|date:"F d | Y" }}</span>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>

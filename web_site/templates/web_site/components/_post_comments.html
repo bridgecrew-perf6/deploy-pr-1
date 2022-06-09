@@ -1,0 +1,23 @@
+{% load website_tags %}
+<div class="post-comments">
+    <header>
+      <h3 class="h6">Post Comments<span class="no-of-comments">({{ comments_count }})</span></h3>
+    </header>
+    
+    {% for comment in comments %}
+    <div class="comment">
+      <div class="comment-header d-flex justify-content-between">
+        <div class="user d-flex align-items-center">
+          {% user_profile_image comment.post.author.pk as profile_image %}
+          <div class="image"><img src="{{ profile_image }}" alt="..."
+              class="img-fluid rounded-circle"></div>
+          <div class="title"><strong>{{ comment.post.author.first_name }} {{ comment.post.author.last_name }}</strong><span class="date">{{ comment.date_added|date:'F o' }}</span></div>
+        </div>
+      </div>
+      <div class="comment-body">
+        <p>{{ comment.body }}</p>
+      </div>
+    </div>
+    {% endfor %}
+   
+  </div>
